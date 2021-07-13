@@ -9,7 +9,7 @@ const handler: Handler = async (_event, _context) => {
   counter++;
   return {
     statusCode: 200,
-    body: JSON.stringify({ name: "Jane Doe" }),
+    body: 'JSON.stringify({ name: "Jane Doe" })',
   };
 };
 
