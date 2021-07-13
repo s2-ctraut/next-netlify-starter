@@ -1,14 +1,11 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from "next";
+import { Handler } from "@netlify/functions";
 
-type Data = {
-  name: string;
+const handler: Handler = async (_event, _context) => {
+  return {
+    statusCode: 200,
+    body: JSON.stringify({ name: "Jane Doe" }),
+  };
 };
 
-export default function handler(
-  _req: NextApiRequest,
-  res: NextApiResponse<Data>
-) {
-  console.log("Hello from hello.ts");
-  res.status(200).json({ name: "John Doe" });
-}
+export { handler };
