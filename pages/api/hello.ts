@@ -5,7 +5,7 @@ let counter = 0;
 
 const handler: Handler = async (_event, _context) => {
   console.log("Greetings from hello.ts");
-  console.log(`Cpunt = #{{counter}}`);
+  console.log(`Cpunt = ${counter}`);
   counter++;
   return {
     statusCode: 200,
