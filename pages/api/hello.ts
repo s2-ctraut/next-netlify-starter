@@ -2,6 +2,7 @@
 import { Handler } from "@netlify/functions";
 
 const handler: Handler = async (_event, _context) => {
+  console.log("Greetings from hello.ts");
   return {
     statusCode: 200,
     body: JSON.stringify({ name: "Jane Doe" }),
