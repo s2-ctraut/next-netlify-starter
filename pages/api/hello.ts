@@ -8,7 +8,7 @@ const handler: Handler = async (_event, _context) => {
   console.log(`Cpunt = ${counter}`);
   counter++;
   return {
-    statusCode: 200,
+    statusCode: 201,
     body: 'JSON.stringify({ name: "Jane Doe" })',
   };
 };
