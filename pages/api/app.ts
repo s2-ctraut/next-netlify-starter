@@ -3,7 +3,7 @@ import { Handler } from "@netlify/functions";
 
 let counter = 0;
 
-const handler: Handler = (_event, _context) => {
+const handler: Handler = async (_event, _context) => {
   console.log("Greetings from hello.ts");
   console.log(`Cpunt = ${counter}`);
   counter++;
@@ -13,5 +13,4 @@ const handler: Handler = (_event, _context) => {
   };
 };
 
-// export { handler };
-export default handler;
+export { handler };
