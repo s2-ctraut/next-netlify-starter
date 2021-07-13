@@ -2,4 +2,4 @@
   command = "npm run build"
 #  publish = "out"
 [functions]
-  directory = "api"
+  directory = "pages/api"
