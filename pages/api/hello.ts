@@ -5,9 +5,8 @@ import { Handler } from "@netlify/functions";
 
 let counter = 0;
 
-const handler: Handler = async (_event, _context) => {
-  // const name = event.queryStringParameters.name || "World";
-  const name = "World";
+const handler: Handler = async (event, _context) => {
+  const name = event?.queryStringParameters?.name || "World";
 
   console.log("Greetings from hello.ts");
   console.log(`Count = ${counter}`);
