@@ -19,4 +19,4 @@ const handler: Handler = async (_event, _context) => {
   };
 };
 
-export default handler;
+export { handler };
