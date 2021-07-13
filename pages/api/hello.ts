@@ -5,7 +5,7 @@ import { Handler } from "@netlify/functions";
 
 let counter = 0;
 
-const handler: Handler = (_event, _context) => {
+const handler: Handler = async (_event, _context) => {
   // const name = event.queryStringParameters.name || "World";
   const name = "World";
 
