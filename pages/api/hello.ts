@@ -3,7 +3,10 @@
 
 let counter = 0;
 
-exports.handler = async (event, _context) => {
+exports.handler = async (
+  event: { queryStringParameters: { name: string } },
+  _context: any
+) => {
   const name = event.queryStringParameters.name || "World";
 
   console.log("Greetings from hello.ts");
@@ -15,3 +18,5 @@ exports.handler = async (event, _context) => {
     body: `Hello, ${name}`,
   };
 };
+
+export {};
