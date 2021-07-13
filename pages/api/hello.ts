@@ -14,7 +14,7 @@ const handler: Handler = async (event, _context) => {
 
   return {
     statusCode: 200,
-    body: `Hello, ${name}`,
+    body: JSON.stringify({ name, counter }),
   };
 };
 
