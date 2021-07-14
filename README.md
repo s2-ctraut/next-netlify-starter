@@ -1,5 +1,10 @@
 # Next + Netlify Starter
 
+http://localhost:8888/api/hello2?name=qwe
+http://localhost:8888/.netlify/functions/hello?name=qwe
+https://ctraut1.netlify.app/.netlify/functions/hello?name=qwe
+https://ctraut1.netlify.app/api/hello2?name=qwe
+
 See https://app.netlify.com/sites/frosty-jepsen-8b01f4/overview
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/ed50f56e-4fc2-4c98-8b66-1e5074c6f3d3/deploy-status)](https://app.netlify.com/sites/next-starter/deploys)
