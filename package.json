@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "netlify dev",
     "dev:next": "next dev",
+    "build": "netlify build",
     "build:next": "next build",
     "lint": "next lint",
     "export": "next export"
