@@ -1,5 +1,5 @@
 [build]
   command = "npm run build"
 #  publish = "out"
-[functions]
-  directory = "pages/api"
+#[functions]
+#  directory = "pages/api"
