@@ -1,4 +1,3 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 // See https://functions.netlify.com/playground/
 
 import { Handler } from "@netlify/functions";
