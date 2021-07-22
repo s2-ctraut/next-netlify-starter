@@ -12,12 +12,16 @@
     "export": "next export"
   },
   "dependencies": {
+    "@material-ui/core": "^4.12.2",
+    "@material-ui/icons": "^4.11.2",
     "@netlify/functions": "^0.7.2",
+    "@types/react-dom": "^17.0.9",
     "date-fns": "^2.22.1",
     "gray-matter": "^4.0.3",
     "next": "^11.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-query": "^3.19.0",
     "remark": "^13.0.0",
     "remark-html": "^13.0.1"
   },
@@ -28,6 +32,7 @@
     "eslint-config-next": "11.0.1",
     "netlify-cli": "^4.3.1",
     "netlify-lambda": "^2.0.11",
+    "nsp": "^3.2.1",
     "typescript": "^4.3.5"
   }
 }
