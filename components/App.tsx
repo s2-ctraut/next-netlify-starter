@@ -9,7 +9,21 @@ import Grid from '@material-ui/core/Grid';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import Badge from '@material-ui/core/Badge';
 // Styles
-import { Wrapper, StyledButton } from './App.styles';
+// import { Wrapper, StyledButton } from './App.styles';
+import styled from 'styled-components';
+import IconButton from '@material-ui/core/IconButton';
+
+export const Wrapper = styled.div`
+  margin: 40px;
+`;
+
+export const StyledButton = styled(IconButton)`
+  position: fixed;
+  z-index: 100;
+  right: 20px;
+  top: 20px;
+`;
+
 // Types
 export type CartItemType = {
   id: number;
@@ -72,11 +86,13 @@ const App = () => {
   return (
     <Wrapper>
       <Drawer anchor='right' open={cartOpen} onClose={() => setCartOpen(false)}>
+                  { process.browser && 
         <Cart
           cartItems={cartItems}
           addToCart={handleAddToCart}
           removeFromCart={handleRemoveFromCart}
         />
+                  }
       </Drawer>
       <StyledButton onClick={() => setCartOpen(true)}>
         <Badge badgeContent={getTotalItems(cartItems)} color='error'>
@@ -86,7 +102,9 @@ const App = () => {
       <Grid container spacing={3}>
         {data?.map(item => (
           <Grid item key={item.id} xs={12} sm={4}>
+                  { process.browser && 
             <Item item={item} handleAddToCart={handleAddToCart} />
+                  }
           </Grid>
         ))}
       </Grid>
