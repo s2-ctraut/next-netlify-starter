@@ -2,33 +2,7 @@ import Button from '@material-ui/core/Button';
 // Types
 import { CartItemType } from '../App';
 // Styles
-// import { Wrapper } from './CartItem.styles';
-import styled from 'styled-components';
-
-export const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  font-family: Arial, Helvetica, sans-serif;
-  border-bottom: 1px solid lightblue;
-  padding-bottom: 20px;
-
-  div {
-    flex: 1;
-  }
-
-  .information,
-  .buttons {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  img {
-    max-width: 80px;
-    object-fit: cover;
-    margin-left: 40px;
-  }
-`;
-
+import { Wrapper } from '../../styles/CartItem.styles';
 
 type Props = {
   item: CartItemType;

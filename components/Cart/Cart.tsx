@@ -1,13 +1,6 @@
 import CartItem from '../CartItem/CartItem';
-// import { Wrapper } from './Cart.styles';
 import { CartItemType } from '../App';
-import styled from 'styled-components';
-
-export const Wrapper = styled.aside`
-  font-family: Arial, Helvetica, sans-serif;
-  width: 500px;
-  padding: 20px;
-`;
+import { Wrapper } from '../../styles/Cart.styles';
 
 type Props = {
   cartItems: CartItemType[];
