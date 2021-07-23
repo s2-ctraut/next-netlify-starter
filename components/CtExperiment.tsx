@@ -117,7 +117,7 @@ const CtExperiment = () => {
       </Grid>
       <Button onClick={() => handleCoolStuff()}>Do cool stuff</Button>
       <div>
-      <h3>{addQueryResult.data}</h3>
+      <h3>{addQueryResult.data?.name}</h3>
     </div>
     </Wrapper>
   );
