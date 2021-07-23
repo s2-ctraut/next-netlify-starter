@@ -42,11 +42,12 @@ const CtExperiment = () => {
     getProducts
   );
   console.log(data);
-  const { mathData, isMathLoading, mathError } = useQuery<AdditingType>(
+  // const { mathData, isMathLoading, mathError } = useQuery<AdditingType>(
+  const addQueryResult = useQuery<AddingType>(
     'addition',
     getAddition
   );
-  console.log(mathData);
+  console.log(addQueryResult.data);
 
   const handleCoolStuff = () => {
     console.log('Handling cool stuff...');
@@ -85,8 +86,8 @@ const CtExperiment = () => {
     );
   };
 
-  if (isMathLoading) return <LinearProgress />;
-  if (mathError) return <div>Something went wrong ...</div>;
+  if (addQueryResult.isLoading) return <LinearProgress />;
+  if (addQueryResult.error) return <div>Something went wrong ...</div>;
 
   if (isLoading) return <LinearProgress />;
   if (error) return <div>Something went wrong ...</div>;
@@ -116,7 +117,7 @@ const CtExperiment = () => {
       </Grid>
       <Button onClick={() => handleCoolStuff()}>Do cool stuff</Button>
       <div>
-      <h3>{mathData}</h3>
+      <h3>{addQueryResult.data}</h3>
     </div>
     </Wrapper>
   );
