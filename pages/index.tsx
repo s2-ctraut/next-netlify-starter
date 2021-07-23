@@ -1,5 +1,6 @@
 import React from 'react';
 import App from '../components/App';
+import CtExperiment from '../components/CtExperiment';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 
@@ -33,6 +34,8 @@ export default function Home({
           <title>{siteTitle}</title>
         </Head>
         <App />
+        <hr />
+        <CtExperiment />
       </Layout>
     </QueryClientProvider>
   )
