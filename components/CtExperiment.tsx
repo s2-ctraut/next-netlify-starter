@@ -117,7 +117,7 @@ const CtExperiment = () => {
       </Grid>
       <Button onClick={() => handleCoolStuff()}>Do cool stuff</Button>
       <div>
-      <h3>Name: {addQueryResult.data?.sum}</h3>
+      <h3>Sum: {addQueryResult.data?.sum}</h3>
       <h3>Counter: {addQueryResult.data?.counter}</h3>
     </div>
     </Wrapper>
