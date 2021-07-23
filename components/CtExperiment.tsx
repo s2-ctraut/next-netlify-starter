@@ -28,11 +28,11 @@ const getProducts = async (): Promise<CartItemType[]> =>
 
 export type AddingType = {
   counter: number;
-  name: string;
+  sum: string;
 };
 
 const getAddition = async (): Promise<AddingType> =>
-  await (await fetch('/.netlify/functions/hello?name=qwe')).json();
+  await (await fetch('/.netlify/functions/add?arg1=342%arg2=102')).json();
 
 const CtExperiment = () => {
   const [cartOpen, setCartOpen] = useState(false);
@@ -117,7 +117,7 @@ const CtExperiment = () => {
       </Grid>
       <Button onClick={() => handleCoolStuff()}>Do cool stuff</Button>
       <div>
-      <h3>Name: {addQueryResult.data?.name}</h3>
+      <h3>Name: {addQueryResult.data?.sum}</h3>
       <h3>Counter: {addQueryResult.data?.counter}</h3>
     </div>
     </Wrapper>
