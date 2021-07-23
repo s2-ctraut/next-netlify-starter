@@ -9,9 +9,6 @@ const handler: Handler = async (event, _context) => {
   const arg2 = Number(event?.queryStringParameters?.arg2) || 0;
   const sum = arg1 + arg2;
 
-  console.log(event?.queryStringParameters?.arg1);
-  console.log(Number(event?.queryStringParameters?.arg1));
-
   console.log("Greetings from add.ts");
   console.log(`Count = ${counter}`);
   counter++;
