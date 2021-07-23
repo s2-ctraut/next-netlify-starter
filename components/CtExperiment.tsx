@@ -32,7 +32,7 @@ export type AddingType = {
 };
 
 const getAddition = async (): Promise<AddingType> =>
-  await (await fetch('/.netlify/functions/add?arg1=342%arg2=102')).json();
+  await (await fetch('/.netlify/functions/add?arg1=342&arg2=102')).json();
 
 const CtExperiment = () => {
   const [cartOpen, setCartOpen] = useState(false);
