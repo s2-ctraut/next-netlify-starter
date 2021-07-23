@@ -1,6 +1,9 @@
 import { useQuery } from 'react-query';
+
 // Components
 import LinearProgress from '@material-ui/core/LinearProgress';
+import Button from '@material-ui/core/Button';
+
 // Styles
 import { Wrapper } from '../styles/App.styles';
 
@@ -24,12 +27,18 @@ const CtExperiment = () => {
   if (addQueryResult.isLoading) return <LinearProgress />;
   if (addQueryResult.error) return <div>Something went wrong ...</div>;
 
+  const handleCoolStuff = () => {
+    console.log('Handling cool stuff...');
+  }
+
   return (
     <Wrapper>
       <div>
-      <h3>Sum: {addQueryResult.data?.sum}</h3>
-      <h3>Counter: {addQueryResult.data?.counter}</h3>
-    </div>
+        <Button onClick={() => handleCoolStuff()}>Do cool stuff</Button>
+
+        <h3>Sum: {addQueryResult.data?.sum}</h3>
+        <h3>Counter: {addQueryResult.data?.counter}</h3>
+      </div>
     </Wrapper>
   );
 };
