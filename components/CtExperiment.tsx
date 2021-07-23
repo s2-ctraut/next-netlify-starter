@@ -17,15 +17,14 @@ const getSum = async (): Promise<AddingType> =>
   await (await fetch('/.netlify/functions/add?arg1=342&arg2=102')).json();
 
 const CtExperiment = () => {
-  // const { mathData, isMathLoading, mathError } = useQuery<AdditingType>(
-  const addQueryResult = useQuery<AddingType>(
+  const { data, isLoading, error } = useQuery<AddingType>(
     'addition',
     getSum
   );
-  console.log(addQueryResult.data);
+  console.log(data);
 
-  if (addQueryResult.isLoading) return <LinearProgress />;
-  if (addQueryResult.error) return <div>Something went wrong ...</div>;
+  if (isLoading) return <LinearProgress />;
+  if (error) return <div>Something went wrong ...</div>;
 
   const handleCoolStuff = () => {
     console.log('Handling cool stuff...');
@@ -36,8 +35,8 @@ const CtExperiment = () => {
       <div>
         <Button onClick={() => handleCoolStuff()}>Do cool stuff</Button>
 
-        <h3>Sum: {addQueryResult.data?.sum}</h3>
-        <h3>Counter: {addQueryResult.data?.counter}</h3>
+        <h3>Sum: {data?.sum}</h3>
+        <h3>Counter: {data?.counter}</h3>
       </div>
     </Wrapper>
   );
