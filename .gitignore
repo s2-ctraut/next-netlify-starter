@@ -31,4 +31,4 @@ yarn-error.log*
 
 .netlify
 .next
-netlify
+netlify/functions/next_*
