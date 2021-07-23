@@ -33,9 +33,9 @@ export default function Home({
         <Head>
           <title>{siteTitle}</title>
         </Head>
-        <App />
-        <hr />
         <CtExperiment />
+        <hr />
+        <App />
       </Layout>
     </QueryClientProvider>
   )
