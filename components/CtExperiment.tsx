@@ -28,7 +28,7 @@ const getProducts = async (): Promise<CartItemType[]> =>
 
 export type AddingType = {
   counter: number;
-  sum: number;
+  name: string;
 };
 
 const getAddition = async (): Promise<AddingType> =>
