@@ -3,7 +3,6 @@
 import { Handler } from "@netlify/functions";
 
 let counter = 0;
-let asdasd = 0;
 
 const handler: Handler = async (event, _context) => {
   const arg1 = Number(event?.queryStringParameters?.arg1) || 0;
@@ -16,7 +15,7 @@ const handler: Handler = async (event, _context) => {
 
   return {
     statusCode: 200,
-    body: JSON.stringify({ sum, counter, asdasd }),
+    body: JSON.stringify({ sum, counter }),
   };
 };
 
