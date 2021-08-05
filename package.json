@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "netlify dev",
     "dev:next": "next dev",
-    "build": "next build",
+    "build:disabled": "next build",
     "build:netlify": "netlify build",
     "build:next": "next build",
     "lint": "next lint",
@@ -19,12 +19,15 @@
     "@types/styled-components": "^5.1.11",
     "date-fns": "^2.22.1",
     "gray-matter": "^4.0.3",
+    "image-type": "^4.1.0",
+    "is-svg": "^4.3.1",
     "next": "^11.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-query": "^3.19.0",
     "remark": "^13.0.0",
     "remark-html": "^13.0.1",
+    "sharp": "^0.28.3",
     "styled-components": "^5.3.0"
   },
   "devDependencies": {
