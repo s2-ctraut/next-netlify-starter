@@ -1,4 +1,4 @@
-import { QueryClient, QueryClientProvider, QueryKey, useQuery } from 'react-query';
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 import { ReactQueryDevtools } from "react-query/devtools";
 
 // Components
@@ -23,35 +23,6 @@ export type AddArgsType = {
 const queryClient = new QueryClient();
 
 const CtExperiment = () => {
-/*
-fetch('https://www.learnwithjason.dev/graphql', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
-    query: `
-        query GetLearnWithJasonEpisodes($now: DateTime!) {
-          allEpisode(limit: 10, sort: {date: ASC}, where: {date: {gte: $now}}) {
-            date
-            title
-            guest {
-              name
-              twitter
-            }
-            description
-          }
-        }
-      `,
-    variables: {
-      now: new Date().toISOString(),
-    },
-  }),
-})
-  .then((res) => res.json())
-  .then((result) => console.log(result));
-*/
-
 
   const [arg2, setArg2] = React.useState(0);
 
@@ -59,10 +30,45 @@ fetch('https://www.learnwithjason.dev/graphql', {
     await (await fetch(`/.netlify/functions/add?arg1=342&arg2=${arg2}`,{ })).json();
 
   const { data, isLoading, error } = useQuery<AddResultType,AddArgsType>(
-    ['arg2', arg2],
+    ['adding', arg2],
     getSum
   );
   console.log(data);
+  const getEpisodes = async (): Promise<any> =>
+    await ( await 
+      fetch('https://www.learnwithjason.dev/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: `
+              query GetLearnWithJasonEpisodes($now: DateTime!) {
+                allEpisode(limit: 10, sort: {date: ASC}, where: {date: {gte: $now}}) {
+                  date
+                  title
+                  guest {
+                    name
+                    twitter
+                  }
+                  description
+                }
+              }
+            `,
+          variables: {
+            now: new Date().toISOString(),
+          },
+        }),
+      })
+    .then((res) => res.json()));
+//  .then((result) => console.log(result)));
+
+  const { data: episodeData} = useQuery<any,AddArgsType>(
+    'episodes',
+    getEpisodes
+  );
+  console.log(episodeData);
+  console.log(`episodedata = ${episodeData?.data.allEpisode[0].title}`);
 
   useEffect(() => {
     // Update the document title using the browser API
@@ -84,8 +90,9 @@ fetch('https://www.learnwithjason.dev/graphql', {
       <div>
         <Button onClick={() => handleCoolStuff()}>Do cool stuff</Button>
 
-        <h3>Sum: {data?.sum}</h3>
-        <h3>Counter: {data?.counter}</h3>
+        <h3>Function Result Sum: {data?.sum}</h3>
+        <h3>Function Result CallCounter: {data?.counter}</h3>
+        <h3>Foreign grapgql episode: {episodeData?.data.allEpisode[0].title}</h3>
       </div>
       <ReactQueryDevtools initialIsOpen />
       </QueryClientProvider>
