@@ -8,6 +8,8 @@ import Button from '@material-ui/core/Button';
 // Styles
 import { Wrapper } from '../styles/App.styles';
 import React, { useEffect } from 'react';
+import AddInBrowser from './Adder/AddInBrowser';
+import AddInFunction from './Adder/AddInFunction';
 
 // Types
 export type AddResultType = {
@@ -75,7 +77,7 @@ const CtExperiment = () => {
     document.title = `You clicked ${arg2} times`;
   });
 
-  if (isLoading) return <LinearProgress />;
+  // if (isLoading) return <LinearProgress />;
   if (error) return <div>Something went wrong ...</div>;
 
   const handleCoolStuff = () => {
@@ -90,9 +92,14 @@ const CtExperiment = () => {
       <div>
         <Button onClick={() => handleCoolStuff()}>Do cool stuff</Button>
 
-        <h3>Function Result Sum: {data?.sum}</h3>
-        <h3>Function Result CallCounter: {data?.counter}</h3>
-        <h3>Foreign grapgql episode: {episodeData?.data.allEpisode[0].title}</h3>
+        <h3>Cloud Function Call Result: Sum {data?.sum}</h3>
+        <h3>Cloud Function Call Result: Sum {data?.sum}</h3>
+        <h3>Cloud Function Instance Variable: CallCounter: {data?.counter}</h3>
+        <h3>External Graphql Result: episode: {episodeData?.data.allEpisode[0].title}</h3>
+      </div>
+      <div>
+        <AddInBrowser/>
+        <AddInFunction/>
       </div>
       <ReactQueryDevtools initialIsOpen />
       </QueryClientProvider>
