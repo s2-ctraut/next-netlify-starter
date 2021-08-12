@@ -1,3 +1,6 @@
+// TODO: https://thecodest.co/blog/deploy-graphql-mongodb-api-using-netlify-functions/
+
+
 import { ChangeEvent, useState } from 'react';
 import { gql, useQuery } from '@apollo/client';
 

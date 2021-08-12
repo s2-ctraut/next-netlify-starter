@@ -1,5 +1,6 @@
-import ApolloServer from "apollo-server";
-import ApolloServerLambda, { gql } from "apollo-server-lambda";
+import { ApolloServer } from "apollo-server";
+import { gql } from "apollo-server-lambda";
+import { ApolloServer as ApolloServerLambda } from "apollo-server-lambda";
 
 const typeDefs = gql`
   type Query {
@@ -13,17 +14,38 @@ const resolvers = {
   },
 };
 
+/*
 function createLambdaServer() {
-  return new ApolloServerLambda.ApolloServer({
+  return new ApolloServerLambda({
     typeDefs,
     resolvers,
     introspection: true,
     // playground: true,
   });
 }
+*/
+
+const createLambdaServer = async () =>
+  new ApolloServerLambda({
+    typeDefs,
+    resolvers,
+    introspection: true,
+    // playground: true,
+    /*
+    context: async () => {
+      await connectToDatabase();
+
+      return {
+        models: {
+          userModel,
+        },
+      };
+    },
+    */
+  });
 
 function createLocalServer() {
-  return new ApolloServer.ApolloServer({
+  return new ApolloServer({
     typeDefs,
     resolvers,
     introspection: true,

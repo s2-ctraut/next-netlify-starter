@@ -1,5 +1,3 @@
-// See https://functions.netlify.com/playground/
-
 import { Handler } from "@netlify/functions";
 
 let counter = 0;
