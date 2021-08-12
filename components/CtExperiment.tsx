@@ -1,15 +1,16 @@
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 import { ReactQueryDevtools } from "react-query/devtools";
+import React, { useEffect } from 'react';
+import AddInBrowser from './Adder/AddInBrowser';
+import AddInFunction from './Adder/AddInFunction';
+import AddUsingGraphQL from './Adder/AddUsingGraphQL';
 
 // Components
-import LinearProgress from '@material-ui/core/LinearProgress';
+// import LinearProgress from '@material-ui/core/LinearProgress';
 import Button from '@material-ui/core/Button';
 
 // Styles
 import { Wrapper } from '../styles/App.styles';
-import React, { useEffect } from 'react';
-import AddInBrowser from './Adder/AddInBrowser';
-import AddInFunction from './Adder/AddInFunction';
 
 // Types
 export type AddResultType = {
@@ -100,6 +101,7 @@ const CtExperiment = () => {
       <div>
         <AddInBrowser/>
         <AddInFunction/>
+        <AddUsingGraphQL/>
       </div>
       <ReactQueryDevtools initialIsOpen />
       </QueryClientProvider>
