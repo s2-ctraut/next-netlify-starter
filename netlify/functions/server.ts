@@ -25,6 +25,7 @@ function createLambdaServer() {
 }
 */
 
+/*
 const createLambdaServer = async () =>
   new ApolloServerLambda({
     typeDefs,
@@ -41,8 +42,35 @@ const createLambdaServer = async () =>
         },
       };
     },
-    */
   });
+  */
+
+import {
+  APIGatewayProxyEvent,
+  APIGatewayProxyEventHeaders,
+  Context,
+} from "aws-lambda";
+const createLambdaServer = async (
+  { headers }: APIGatewayProxyEvent,
+  context: Context
+) => {
+  return new ApolloServerLambda({
+    typeDefs,
+    resolvers,
+    context: async () => {
+      // await connectToDatabase();
+
+      // const auth = await checkAuth(headers);
+
+      return {
+        // auth,
+        models: {
+          // userModel,
+        },
+      };
+    },
+  });
+};
 
 function createLocalServer() {
   return new ApolloServer({

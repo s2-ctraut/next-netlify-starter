@@ -20,7 +20,7 @@ import { GetStaticProps } from 'next'
 const reactClient = new QueryClient();
 
 const apolloClient = new ApolloClient({
-  uri: "/.netlify/functions/graphql",
+  uri: "/.netlify/functions/graphql3",
   // uri: "https://48p1r2roz4.sse.codesandbox.io",
   cache: new InMemoryCache()
 });
