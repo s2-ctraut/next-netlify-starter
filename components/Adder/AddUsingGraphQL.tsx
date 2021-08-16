@@ -26,16 +26,29 @@ export type AddArgsType = {
     arg2: number
   ]
 };
-*/
 
-const EXCHANGE_RATES = gql`
-  query hello {
+
     rates(currency: "USD") {
       currency
       rate
     }
-  }
-`;
+*/
+
+/*
+const EXCHANGE_RATES = gql`
+      query GetRates {
+        rates(currency: "USD") {
+          currency
+        }
+      }
+    `
+;
+*/
+const EXCHANGE_RATES = gql`
+      query hello { hello }
+    `
+;
+
 
 const AddUsingGraphQL: React.FC<AdderProps> = ({ /* item, handleAddToCart */ }) => {
   const [formData, setFormData] = useState({ summand1: 0, summand2: 0 });

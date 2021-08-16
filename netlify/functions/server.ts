@@ -72,13 +72,12 @@ const createLambdaServer = async (
   });
 };
 
-function createLocalServer() {
-  return new ApolloServer({
+const createLocalServer = () => {
+  console.log("*************** createLocalServer");
+  new ApolloServer({
     typeDefs,
     resolvers,
-    introspection: true,
-    // playground: true,
   });
-}
+};
 
 export { createLambdaServer, createLocalServer };
