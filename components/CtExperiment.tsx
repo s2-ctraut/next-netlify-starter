@@ -32,11 +32,11 @@ const CtExperiment = () => {
   const getSum = async (): Promise<AddResultType> =>
     await (await fetch(`/.netlify/functions/add?arg1=342&arg2=${arg2}`,{ })).json();
 
-  const { data, isLoading, error } = useQuery<AddResultType,AddArgsType>(
+  const { data, error } = useQuery<AddResultType,AddArgsType>(
     ['adding', arg2],
     getSum
   );
-  console.log(data);
+
   const getEpisodes = async (): Promise<any> =>
     await ( await 
       fetch('https://www.learnwithjason.dev/graphql', {
@@ -70,8 +70,6 @@ const CtExperiment = () => {
     'episodes',
     getEpisodes
   );
-  console.log(episodeData);
-  console.log(`episodedata = ${episodeData?.data.allEpisode[0].title}`);
 
   useEffect(() => {
     // Update the document title using the browser API

@@ -10,21 +10,6 @@ export type AddResultType = {
   sum: string;
 };
 
-/*
-export type AddArgsType = {
-    arg1: number;
-    arg2: number;
-};
-
-
-export type AddArgsType = {
-  queryKey: [
-    arg1: number,
-    arg2: number
-  ]
-};
-*/
-
 const AddInFunction: React.FC<AdderProps> = ({ /* item, handleAddToCart */ }) => {
   const [formData, setFormData] = useState({ summand1: 0, summand2: 0 });
 

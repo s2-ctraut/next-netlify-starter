@@ -1,66 +1,39 @@
 // TODO: https://thecodest.co/blog/deploy-graphql-mongodb-api-using-netlify-functions/
 
-
 import { ChangeEvent, useState } from 'react';
 import { gql, useQuery } from '@apollo/client';
 
 type AdderProps = {
 };
 
-// Types
-export type AddResultType = {
+interface AddResultType {
   counter: number;
   sum: string;
 };
 
-/*
-export type AddArgsType = {
-    arg1: number;
-    arg2: number;
+interface AddArgs {
+    summand1: number;
+    summand2: number;
 };
 
-
-export type AddArgsType = {
-  queryKey: [
-    arg1: number,
-    arg2: number
-  ]
-};
-
-
-    rates(currency: "USD") {
-      currency
-      rate
-    }
-*/
-
-/*
-const EXCHANGE_RATES = gql`
-      query GetRates {
-        rates(currency: "USD") {
-          currency
-        }
-      }
-    `
+const SUM_OF = gql`
+  query Adder($summand1: Int!, $summand2: Int!) { 
+    sum (summand1: $summand1, summand2: $summand2)
+  }
+`
 ;
-*/
-const EXCHANGE_RATES = gql`
-      query hello { hello }
-    `
-;
-
 
 const AddUsingGraphQL: React.FC<AdderProps> = ({ /* item, handleAddToCart */ }) => {
   const [formData, setFormData] = useState({ summand1: 0, summand2: 0 });
 
-  const functionResult = useQuery<AddResultType,Error>(
-    EXCHANGE_RATES
+  const functionResult = useQuery<AddResultType,AddArgs>(
+    SUM_OF, {variables: { summand1: Number(formData.summand1) || 0, summand2: Number(formData.summand2) || 0 }}
   );
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setFormData( {...formData, [event.target.name]: event.target.value});
     console.log('Adding using GraphQL');
-    console.log(functionResult);
+    // console.log(functionResult);
   }
 
   return(
