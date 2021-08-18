@@ -15,7 +15,7 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
     hello: () => {
-      return "Hello, world!";
+      return "Hello, persistance!";
     },
     sum: (_: any, args: { summand1: any; summand2: any }) => {
       return args.summand1 + args.summand2;

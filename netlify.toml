@@ -1,5 +1,30 @@
-[build]
-  command = "yarn run next build"
 #  publish = "out"
 #[functions]
 #  directory = "pages/api"
+# [[plugins]]
+# type = "netlify-plugin-cypress"
+# [plugins.config]
+# baseUrl = "http://localhost:8080"
+
+
+[[headers]]
+  for = "/*"
+    [headers.values]
+    Access-Control-Allow-Origin = "*"
+
+[build]
+  command = "yarn run next build"
+#  functions = "functions"
+
+#[[plugins]]
+#package = "@netlify/plugin-local-install-core"
+#package = "netlify-plugin-functions-core"
+#package = "netlify-plugin-gatsby-cache"
+
+#[dev]
+#  functions = "functions"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200

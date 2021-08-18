@@ -2,6 +2,9 @@
 
 import { ChangeEvent, useState } from 'react';
 import { gql, useQuery } from '@apollo/client';
+import { QueryClient, QueryClientProvider} from 'react-query';
+
+const queryClient = new QueryClient();
 
 type AdderProps = {
 };
@@ -37,14 +40,16 @@ const AddUsingGraphQL: React.FC<AdderProps> = ({ /* item, handleAddToCart */ }) 
   }
 
   return(
-    <div>
-      <h3>Adding using GraphQL</h3>
-      <input name="summand1" onChange={handleChange} />
-      +
-      <input name="summand2" onChange={handleChange} />
-      =
-      {functionResult?.data?.sum}
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <div>
+        <h3>Adding using GraphQL</h3>
+        <input name="summand1" onChange={handleChange} />
+        +
+        <input name="summand2" onChange={handleChange} />
+        =
+        {functionResult?.data?.sum}
+      </div>
+    </QueryClientProvider>
   )
 };
 
