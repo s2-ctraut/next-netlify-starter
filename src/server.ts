@@ -60,7 +60,7 @@ function createLocalServer() {
     resolvers,
     introspection: true,
     context: async ({ req: { headers } = {} }) => {
-      const auth = await checkAuth(headers);
+      const auth = await checkAuth(headers!);
       await connectToDatabase();
 
       return {
