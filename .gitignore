@@ -32,3 +32,6 @@ yarn-error.log*
 .netlify
 .next
 netlify/functions/next_*
+
+# secrets
+.env
