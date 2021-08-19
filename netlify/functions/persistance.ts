@@ -1,34 +1,17 @@
-// TODO: https://thecodest.co/blog/deploy-graphql-mongodb-api-using-netlify-functions/
+// https://thecodest.co/blog/deploy-graphql-mongodb-api-using-netlify-functions/
+// https://github.com/GraphQLGuide/apollo-datasource-mongodb/
 
 import { HandlerEvent, HandlerContext } from "@netlify/functions";
 import mongoose, { Connection } from "mongoose";
-import { userModel } from "./models/user.model";
-
+import { userModel } from "./mongodb/model";
 
 import { ApolloServer, gql } from "apollo-server-lambda";
 import { createMockHandler } from "./lib/server";
 
-const typeDefs = gql`
-  type Query {
-    hello: String
-    findOne: String
-    sum(summand1: Int, summand2: Int): Int!
-  }
-`;
+import { typeDefs } from "./mongodb/schemas";
+import { resolvers } from "./mongodb/resolvers";
 
-const resolvers = {
-  Query: {
-    hello: () => {
-      return "Hello, persistance!";
-    },
-    findOne: () => {
-      return client.db().collection("users").findOne();
-    },
-    sum: (_: any, args: { summand1: any; summand2: any }) => {
-      return args.summand1 + args.summand2;
-    },
-  },
-};
+require("dotenv").config();
 
 let cachedDb: Connection;
 
@@ -44,7 +27,6 @@ const connectToDatabase = async () => {
   cachedDb = mongoose.connection;
 };
 
-
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -56,7 +38,7 @@ const server = new ApolloServer({
         userModel,
       },
     };
-  }),
+  },
 });
 
 const handler = async (event: HandlerEvent, context: HandlerContext) => {

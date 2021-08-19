@@ -3,13 +3,13 @@
   "version": "0.5.0",
   "private": true,
   "scripts": {
-    "start": "nodemon",
     "dev": "netlify dev",
     "dev:next": "next dev",
     "build:disabled": "next build",
     "build:netlify": "netlify build",
     "build:next": "next build",
     "lint": "next lint",
+    "mongodb:start": "nodemon",
     "codegen": "graphql-codegen --config ./codegen.yml",
     "export": "next export"
   },
