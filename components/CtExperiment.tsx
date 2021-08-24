@@ -5,6 +5,7 @@ import AddInFunction from './Adder/AddInFunction';
 import AddUsingGraphQL from './Adder/AddUsingGraphQL';
 import SimpleExternalGraphQL from "./SimpleExternalGraphQL";
 import { Wrapper } from '../styles/App.styles';
+import UserProfile from "./UserProfile";
 
 const CtExperiment = () => {
   return (
@@ -14,6 +15,7 @@ const CtExperiment = () => {
         <AddInFunction/>
         <AddUsingGraphQL/>
         <SimpleExternalGraphQL/>
+        <UserProfile/>
       </div>
       <ReactQueryDevtools initialIsOpen />
     </Wrapper>

@@ -5,7 +5,7 @@ import { HandlerEvent, HandlerContext } from "@netlify/functions";
 import mongoose, { Connection } from "mongoose";
 import { userModel } from "./mongodb/model";
 
-import { ApolloServer, gql } from "apollo-server-lambda";
+import { ApolloServer } from "apollo-server-lambda";
 import { createMockHandler } from "./lib/server";
 
 import { typeDefs } from "./mongodb/schemas";

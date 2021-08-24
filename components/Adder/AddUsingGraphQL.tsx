@@ -1,14 +1,15 @@
 // TODO: https://thecodest.co/blog/deploy-graphql-mongodb-api-using-netlify-functions/
 
 import { ChangeEvent, useState } from 'react';
-import { gql, useQuery } from '@apollo/client';
-import { QueryClient, QueryClientProvider} from 'react-query';
+import { ApolloClient, gql, ApolloProvider, InMemoryCache, useQuery } from '@apollo/client';
 
-const queryClient = new QueryClient();
+const apolloClient = new ApolloClient({
+  uri: "/api/graphql",
+  cache: new InMemoryCache()
+});
 
 type AdderProps = {
 };
-
 interface AddResultType {
   counter: number;
   sum: string;
@@ -30,7 +31,8 @@ const AddUsingGraphQL: React.FC<AdderProps> = ({ /* item, handleAddToCart */ }) 
   const [formData, setFormData] = useState({ summand1: 0, summand2: 0 });
 
   const functionResult = useQuery<AddResultType,AddArgs>(
-    SUM_OF, {variables: { summand1: Number(formData.summand1) || 0, summand2: Number(formData.summand2) || 0 }}
+    SUM_OF, {variables: { summand1: Number(formData.summand1) || 0, summand2: Number(formData.summand2) || 0 },
+    client: apolloClient }
   );
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -40,7 +42,7 @@ const AddUsingGraphQL: React.FC<AdderProps> = ({ /* item, handleAddToCart */ }) 
   }
 
   return(
-    <QueryClientProvider client={queryClient}>
+    <ApolloProvider client={apolloClient}>
       <div>
         <h3>Adding using GraphQL</h3>
         <input name="summand1" onChange={handleChange} />
@@ -49,7 +51,7 @@ const AddUsingGraphQL: React.FC<AdderProps> = ({ /* item, handleAddToCart */ }) 
         =
         {functionResult?.data?.sum}
       </div>
-    </QueryClientProvider>
+    </ApolloProvider>
   )
 };
 

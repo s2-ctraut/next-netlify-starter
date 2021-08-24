@@ -30,6 +30,9 @@ export const resolvers: Resolvers = {
         expiresIn: 60,
       });
 
+      console.log("token");
+      console.log(token);
+
       return { token };
     },
   },
