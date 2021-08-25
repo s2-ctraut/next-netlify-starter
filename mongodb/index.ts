@@ -9,5 +9,5 @@ const port = process.env.PORT || 4000;
 const server = createLocalServer();
 
 server.listen(port).then(({ url }) => {
-  console.log(`Server ir running at ${url}`);
+  console.log(`Server is running at ${url}`);
 });

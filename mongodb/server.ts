@@ -8,10 +8,10 @@ import { ApolloServer } from "apollo-server";
 import mongoose, { Connection } from "mongoose";
 
 // import { userModel } from "./models/user.model";
-import { userModel } from "./model";
+import { userModel } from "../netlify/functions/mongodb/model";
 
-import { typeDefs } from "./schemas";
-import { resolvers } from "./resolvers";
+import { typeDefs } from "../netlify/functions/mongodb/schemas";
+import { resolvers } from "../netlify/functions/mongodb/resolvers";
 
 import { IncomingHttpHeaders } from "http";
 import {
