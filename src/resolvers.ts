@@ -7,24 +7,8 @@ import jwt from "jsonwebtoken";
 // const userResolver: Resolvers = {
 export const resolvers: Resolvers = {
   Query: {
-    me: async (_, { i }, { models: { userModel }, auth }): Promise<User> => {
-      console.log("auth me: ");
-      console.log(auth);
-      console.log(i);
-      if (!auth) throw new AuthenticationError("You are not authenticated.");
-
-      const user = await userModel.findById({ _id: auth.id }).exec();
-      console.log(user);
-      return user;
-    },
-
     user: async (_, { id }, { models: { userModel }, auth }): Promise<User> => {
-      console.log("auth: ");
-      console.log(auth);
-      if (!auth)
-        throw new AuthenticationError(
-          "You are not authenticated for user call"
-        );
+      if (!auth) throw new AuthenticationError("You are not authenticated");
 
       const user = await userModel.findById({ _id: id }).exec();
       return user;
@@ -42,9 +26,8 @@ export const resolvers: Resolvers = {
 
       if (!matchPasswords) throw new AuthenticationError("Invalid credentials");
 
-      const id = user.id;
-      const token = jwt.sign({ id }, "b8A7cBodqPkaqD", {
-        expiresIn: 600,
+      const token = jwt.sign({ id: user.id }, "riddlemethis", {
+        expiresIn: 60,
       });
 
       return { token };

@@ -1,5 +1,5 @@
 // src/schemas.ts
-import { gql } from "apollo-server";
+import { gql } from "apollo-server-lambda";
 
 const userSchema = gql`
   type User {
@@ -13,7 +13,6 @@ const userSchema = gql`
   }
 
   type Query {
-    me(i: String): User!
     user(id: ID!): User!
     login(email: String!, password: String!): Token!
   }

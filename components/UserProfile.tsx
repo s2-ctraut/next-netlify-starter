@@ -46,7 +46,6 @@ interface LoginArgs {
 const LOGIN = gql`
   query login($email: String!, $password: String!) { 
     login(email: $email, password: $password) {
-      id
       token
     }
   }
@@ -54,10 +53,10 @@ const LOGIN = gql`
 ;
 
 interface UserArgs {
-    id: string;
+    token: string;
 };
 interface UserProfileType {
-  user: {
+  me: {
     id: string;
     email: string;
     name: string;
@@ -65,8 +64,8 @@ interface UserProfileType {
 };
 
 const USER_PROFILE = gql`
-  query user($id: ID!) { 
-    user(id: $id) {
+  query user($i: String) { 
+    me(i: $i) {
       id
       email
       name
@@ -89,8 +88,9 @@ const UserProfile: React.FC<UserProfileProps> = ({ /* item, handleAddToCart */ }
 
   const userProfile = useQuery<UserProfileType,UserArgs>(
     USER_PROFILE, 
-    { variables: {
-        id: loginResult?.data?.login?.id
+    { 
+      variables: {
+          token
         },
       client: apolloClient 
     },
@@ -107,9 +107,9 @@ const UserProfile: React.FC<UserProfileProps> = ({ /* item, handleAddToCart */ }
           email: <input name="email" onChange={handleChange} />
           password: 
           <input name="password" onChange={handleChange} />
-          <br/>id: {loginResult.data?.login?.id || loginResult?.error?.message}
           <br/>token: { (loginResult.data?.login?.token === undefined) || (token = loginResult.data?.login?.token) }
-          <br/>Name: {userProfile.data?.user?.name || userProfile?.error?.message}
+          <br/>id: {userProfile.data?.me?.id || userProfile?.error?.message}
+          <br/>Name: {userProfile.data?.me?.name || userProfile?.error?.message}
         </div>
     </ApolloProvider>
   )
