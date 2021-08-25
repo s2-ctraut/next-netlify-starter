@@ -1,12 +1,18 @@
 // https://thecodest.co/blog/deploy-graphql-mongodb-api-using-netlify-functions/
 // https://github.com/GraphQLGuide/apollo-datasource-mongodb/
 
+import { IncomingHttpHeaders } from "http";
+import { APIGatewayProxyEventHeaders } from "aws-lambda";
+
 import { HandlerEvent, HandlerContext } from "@netlify/functions";
 import mongoose, { Connection } from "mongoose";
 import { userModel } from "./mongodb/model";
 
 import { ApolloServer } from "apollo-server-lambda";
+import { AuthenticationError } from "apollo-server";
 import { createMockHandler } from "./lib/server";
+
+import jwt from "jsonwebtoken";
 
 import { typeDefs } from "./mongodb/schemas";
 import { resolvers } from "./mongodb/resolvers";
@@ -27,13 +33,28 @@ const connectToDatabase = async () => {
   cachedDb = mongoose.connection;
 };
 
+const checkAuth = async ({
+  authorization,
+}: APIGatewayProxyEventHeaders | IncomingHttpHeaders) => {
+  if (typeof authorization === "string") {
+    try {
+      const token = authorization.split(" ")[1];
+      return jwt.verify(token, "b8A7cBodqPkaqD");
+    } catch (e) {
+      throw new AuthenticationError(`Your session expired. Sign in again.`);
+    }
+  }
+};
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: async () => {
+  context: async (invoke) => {
+    const auth = await checkAuth(invoke.event.headers || {});
     await connectToDatabase();
 
     return {
+      auth,
       models: {
         userModel,
       },
