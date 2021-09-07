@@ -1,6 +1,7 @@
 #  publish = "out"
-#[functions]
-#  directory = "pages/api"
+[functions]
+#  directory = "netlify/functions"
+  directory = "pages/api"
 # [[plugins]]
 # type = "netlify-plugin-cypress"
 # [plugins.config]

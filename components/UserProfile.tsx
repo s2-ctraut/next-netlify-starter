@@ -23,7 +23,6 @@ const authLink = setContext((_, { headers }) => {
 
 const apolloClient = new ApolloClient({
   name: "UserProfile",
-  // uri: "/api/persistance",
   link: authLink.concat(httpLink),
   cache: new InMemoryCache()
 });
@@ -43,8 +42,8 @@ interface LoginArgs {
     password: string;
 };
 
-const LOGIN = gql`
-  query login($email: String!, $password: String!) { 
+const GET_TOKEN = gql`
+  query getToken($email: String!, $password: String!) { 
     login(email: $email, password: $password) {
       token
     }
@@ -63,9 +62,9 @@ interface UserProfileType {
   }
 };
 
-const USER_PROFILE = gql`
-  query user($i: String) { 
-    me(i: $i) {
+const GET_MY_PROFILE = gql`
+  query getMyProfile { 
+    me {
       id
       email
       name
@@ -75,29 +74,56 @@ const USER_PROFILE = gql`
 ;
 
 const UserProfile: React.FC<UserProfileProps> = ({ /* item, handleAddToCart */ }) => {
-  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [formData, setFormData] = useState({ email: 'john2@example.com', password: '' });
+  const [myJwt, setMyJwt] = useState({token: undefined});
 
   const loginResult = useQuery<LoginResultType,LoginArgs>(
-    LOGIN, 
+    GET_TOKEN, 
     { variables: {
         email: formData.email, password: formData.password
         },
-      client: apolloClient 
+      client: apolloClient,
+      errorPolicy: "all",
+      onError: (error) => {
+        console.log("Error logging in");
+        console.log(error.message);
+        myUserProfile.refetch();
+      },
+      onCompleted: (data) => {
+        console.log("Setting token");
+        token = data.login.token;
+        setMyJwt( { token: data.login.token });
+        myUserProfile.refetch();
+      }
     },
   );
 
-  const userProfile = useQuery<UserProfileType,UserArgs>(
-    USER_PROFILE, 
+  const myUserProfile = useQuery<UserProfileType,UserArgs>(
+    GET_MY_PROFILE, 
     { 
-      variables: {
-          token
-        },
-      client: apolloClient 
+      // variables: {token: myJwt.token},
+      // pollInterval: 500,
+      errorPolicy: "all",
+      onError: (error) => {
+        console.log("Error getting profile");
+        console.log(error.message);
+        console.log(myUserProfile.data);
+      },
+      onCompleted: (data) => {
+        console.log("Got profile");
+        console.log(data);
+      },
+      client: apolloClient,
+      fetchPolicy: "no-cache",
     },
   );
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    console.log("Unsetting token");
+    token = undefined;
+    setMyJwt({token: undefined});
     setFormData( {...formData, [event.target.name]: event.target.value});
+    loginResult.refetch();
   }
 
   return(
@@ -107,9 +133,9 @@ const UserProfile: React.FC<UserProfileProps> = ({ /* item, handleAddToCart */ }
           email: <input name="email" onChange={handleChange} />
           password: 
           <input name="password" onChange={handleChange} />
-          <br/>token: { (loginResult.data?.login?.token === undefined) || (token = loginResult.data?.login?.token) }
-          <br/>id: {userProfile.data?.me?.id || userProfile?.error?.message}
-          <br/>Name: {userProfile.data?.me?.name || userProfile?.error?.message}
+          <br/>token: { loginResult.data?.login?.token }
+          <br/>id: {myUserProfile.data?.me?.id || myUserProfile?.error?.message}
+          <br/>Name: {myUserProfile.data?.me?.name || myUserProfile?.error?.message}
         </div>
     </ApolloProvider>
   )
