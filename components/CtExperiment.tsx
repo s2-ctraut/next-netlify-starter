@@ -5,7 +5,7 @@ import AddInFunction from './Adder/AddInFunction';
 import AddUsingGraphQL from './Adder/AddUsingGraphQL';
 import SimpleExternalGraphQL from "./SimpleExternalGraphQL";
 import { Wrapper } from '../styles/App.styles';
-import UserProfile from "./UserProfile";
+import { UserProfile } from "./UserProfile";
 
 const CtExperiment = () => {
   return (
