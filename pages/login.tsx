@@ -11,7 +11,7 @@ export default function Login({
     id: string
   }[]
 }) {
-    const clientConfig = { client_id: '261377444261-5ovk2irequohduu8eddis19l5ofvfl53.apps.googleusercontent.com', redirect_uri: 'https://localhost:8888/auth/callback' };
+    const clientConfig = { client_id: '261377444261-5ovk2irequohduu8eddis19l5ofvfl53.apps.googleusercontent.com' };
     const signInOptions = { scope: 'profile' };
   return (
       <Layout home>
@@ -20,9 +20,9 @@ export default function Login({
         </Head>
     <div>
             <GoogleLoginButton
-                  // responseHandler={this.responseGoogle}
+                  responseHandler={this.responseGoogle}
                   clientConfig={clientConfig}
-                  singInOptions={signInOptions} responseHandler={undefined}            />
+                  singInOptions={signInOptions} ></GoogleLoginButton>
     </div>
       </Layout>
   )
