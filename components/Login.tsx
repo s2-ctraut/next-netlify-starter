@@ -23,7 +23,9 @@ export class Login extends React.Component {
     }
 
     render(): JSX.Element {
-        const clientConfig = { client_id: 'youappid' }
+        // TODO
+        const clientConfig = { client_id: '261377444261-5ovk2irequohduu8eddis19l5ofvfl53.apps.googleusercontent.com' };
+        // const clientConfig = { client_id: 'youappid' }
 
         return (
         <div>
