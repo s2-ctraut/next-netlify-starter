@@ -1,5 +1,0 @@
-# Next-on-Netlify Redirects
-/  /.netlify/functions/next_index  200!  Cookie=__prerender_bypass,__next_preview_data
-/_next/data/ETwyXRN_z94ke9POBGiyl/index.json  /.netlify/functions/next_index  200!  Cookie=__prerender_bypass,__next_preview_data
-/_next/image*  url=:url w=:width q=:quality  /nextimg/:url/:width/:quality  301!
-/nextimg/*  /.netlify/functions/next_image  200
