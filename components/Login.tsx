@@ -12,6 +12,7 @@ export class Login extends React.Component<{}, LoginState> {
 
     preLoginTracking(): void {
         console.log('Attempt to login with google');
+        this.setState({ googleUser: undefined });
     }
 
     errorHandler(error: string): void{
