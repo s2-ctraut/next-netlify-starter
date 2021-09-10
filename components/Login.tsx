@@ -28,6 +28,7 @@ export class Login extends React.Component<LoginProps> {
         const userProfile = googleUser.getBasicProfile();
         console.log(userProfile);
         this.userProfile = googleUser;
+        this.forceUpdate();
         // Make user login in your system
         // login success tracking...
     }
