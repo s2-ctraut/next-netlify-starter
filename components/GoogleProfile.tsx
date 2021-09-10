@@ -1,18 +1,17 @@
 import React from 'react';
 
 type GoogleUserProfileProps = {
-  googleUser: gapi.auth2.GoogleUser
+  email: string;
 };
 
-export const GoogleProfile: React.FC<GoogleUserProfileProps> = ({ googleUser }) => {
+export const GoogleProfile: React.FC<GoogleUserProfileProps> = ({ email }) => {
   console.log("GoogleProfile");
-  console.log(googleUser);
+  console.log(email);
 
   return(
         <div>
           <h3>Google Profile</h3>
-          email: {googleUser?.getBasicProfile()?.getEmail()}
-          Name:  {googleUser?.getBasicProfile()?.getFamilyName()}
+          email: {email}
         </div>
   )
 };
