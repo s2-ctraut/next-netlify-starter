@@ -32,7 +32,7 @@ export class Login extends React.Component<{}, LoginState> {
         console.log({ googleId });
         console.log({accessToken: id_token});
         const userProfile = googleUser.getBasicProfile();
-        console.log(userProfile);
+        console.log(userProfile.getEmail());
         this.setState({ email: googleUser.getBasicProfile().getEmail() });
         this.forceUpdate();
         // Make user login in your system
