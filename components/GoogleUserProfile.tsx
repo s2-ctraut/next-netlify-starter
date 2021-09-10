@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { GoogleProfile } from './GoogleProfile';
-import { Login } from './login';
+import { Login } from './Login';
 
 
 export const GoogleUserProfile: React.FC = () => {
