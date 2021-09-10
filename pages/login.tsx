@@ -2,7 +2,7 @@
 
 import Layout, { siteTitle } from '../components/layout'
 import Head from 'next/head'
-import { Login } from '../components/Login'
+import { GoogleUserProfile } from '../components/GoogleUserProfile'
 
 function responseGoogle(googleUser: gapi.auth2.GoogleUser): void {
     const id_token = googleUser.getAuthResponse(true).id_token
@@ -31,7 +31,7 @@ export default function LoginPage({
           <title>Login {siteTitle}</title>
         </Head>
     <div>
-            <Login/>
+            <GoogleUserProfile/>
     </div>
       </Layout>
   )
