@@ -4,20 +4,22 @@ import { GoogleLoginButton } from 'ts-react-google-login-component';
 export class Login extends React.Component {
 
     preLoginTracking(): void {
-        console.log('Attemp to login with google');
+        console.log('Attempt to login with google');
     }
 
     errorHandler(error: string): void{
         // handle error if login got failed...
-        console.error(error)
+        console.error(error);
     }
 
     responseGoogle(googleUser: gapi.auth2.GoogleUser): void {
-        const id_token = googleUser.getAuthResponse(true).id_token
-        const googleId = googleUser.getId()
+        const id_token = googleUser.getAuthResponse(true).id_token;
+        const googleId = googleUser.getId();
 
-        console.log({ googleId })
-        console.log({accessToken: id_token})
+        console.log({ googleId });
+        console.log({accessToken: id_token});
+        const userProfile = googleUser.getBasicProfile();
+        console.log(userProfile);
         // Make user login in your system
         // login success tracking...
     }
