@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { GoogleProfile } from './GoogleProfile';
 import { Login } from './login';
 
 
 export const GoogleUserProfile: React.FC = () => {
-    // const [formData, setFormData] = useState({ email: 'john2@example.com', password: '' });
+    const [googleUser, setGoogleUser] = useState<gapi.auth2.GoogleUser>(undefined);
 
     return(
             <div>
               <h3>Login using Google</h3>
-              <Login/>
-              <GoogleProfile/>
+              <Login setGoogleUser={setGoogleUser}/>
+              <GoogleProfile googleUser={googleUser} />
             </div>
       );
     };
