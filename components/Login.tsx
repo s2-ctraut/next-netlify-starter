@@ -10,6 +10,11 @@ type LoginState = {
 // export const Login: React.Component<LoginProps> = ({ setGoogleUser }) => {
 export class Login extends React.Component<{}, LoginState> {
 
+    constructor(props) {
+        super(props);
+        this.state = { email: 'unknown email' };
+       }
+
     preLoginTracking(): void {
         console.log('Attempt to login with google');
         this.setState({ email: 'unknownEmail' });
