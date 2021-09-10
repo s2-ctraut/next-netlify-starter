@@ -1,5 +1,6 @@
 import React from 'react';
 import { GoogleLoginButton } from 'ts-react-google-login-component';
+// Not https://github.com/anthonyjgrove/react-google-login
 import { GoogleProfile } from './GoogleProfile';
 
 type LoginState = {
@@ -45,6 +46,7 @@ export class Login extends React.Component<{}, LoginState> {
                     preLogin={this.preLoginTracking}
                     failureHandler={this.errorHandler}
                 />
+                gUser: {this.state?.googleUser.getBasicProfile().getEmail}
                 <GoogleProfile googleUser={this.state?.googleUser} />
         </div>
         )

@@ -5,6 +5,7 @@ type GoogleUserProfileProps = {
 };
 
 export const GoogleProfile: React.FC<GoogleUserProfileProps> = ({ googleUser }) => {
+  console.log("GoogleProfile");
   console.log(googleUser);
 
   return(
