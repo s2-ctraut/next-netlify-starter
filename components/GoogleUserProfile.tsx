@@ -1,4 +1,5 @@
 import React from 'react';
+import { GoogleProfile } from './GoogleProfile';
 import { Login } from './login';
 
 
