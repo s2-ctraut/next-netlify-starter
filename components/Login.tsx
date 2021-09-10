@@ -10,9 +10,12 @@ type LoginState = {
 // export const Login: React.Component<LoginProps> = ({ setGoogleUser }) => {
 export class Login extends React.Component<{}, LoginState> {
 
+    userEmail: string;
+
     constructor(props) {
         super(props);
         this.state = { email: 'unknown email' };
+        this.userEmail = 'unset email';
        }
 
     preLoginTracking(): void {
@@ -33,8 +36,9 @@ export class Login extends React.Component<{}, LoginState> {
         console.log({accessToken: id_token});
         const userProfile = googleUser.getBasicProfile();
         console.log(userProfile.getEmail());
+        this.userEmail = userProfile.getEmail();
         // this.setState({ email: googleUser.getBasicProfile().getEmail() });
-        this.setState({ email: "googleUser.getBasicProfile().getEmail()" });
+        i// this.setState({ email: "googleUser.getBasicProfile().getEmail()" });
         console.log('state set')
         // Make user login in your system
         // login success tracking...
@@ -54,6 +58,7 @@ export class Login extends React.Component<{}, LoginState> {
                     failureHandler={this.errorHandler}
                 />
                 gUser: {this.state?.email}
+                userEmail: {this.userEmail}
                 <GoogleProfile email={this.state?.email} />
         </div>
         )
