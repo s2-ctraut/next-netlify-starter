@@ -45,7 +45,7 @@ export class Login extends React.Component<{}, LoginState> {
                     preLogin={this.preLoginTracking}
                     failureHandler={this.errorHandler}
                 />
-                <GoogleProfile googleUser={this.state.googleUser} />
+                <GoogleProfile googleUser={this.state?.googleUser} />
         </div>
         )
     }
