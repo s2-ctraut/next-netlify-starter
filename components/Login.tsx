@@ -34,7 +34,6 @@ export class Login extends React.Component<{}, LoginState> {
         const userProfile = googleUser.getBasicProfile();
         console.log(userProfile.getEmail());
         this.setState({ email: googleUser.getBasicProfile().getEmail() });
-        this.forceUpdate();
         // Make user login in your system
         // login success tracking...
     }
