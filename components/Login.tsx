@@ -1,12 +1,14 @@
 import React from 'react';
 import { GoogleLoginButton } from 'ts-react-google-login-component';
+import { GoogleProfile } from './GoogleProfile';
 
 type LoginProps = {
     setGoogleUser
   }
 
-export class Login extends React.Component<LoginProps> {
 // export const Login: React.Component<LoginProps> = ({ setGoogleUser }) => {
+export class Login extends React.Component<LoginProps> {
+    userProfile: gapi.auth2.GoogleUser;
 
     preLoginTracking(): void {
         console.log('Attempt to login with google');
@@ -25,7 +27,7 @@ export class Login extends React.Component<LoginProps> {
         console.log({accessToken: id_token});
         const userProfile = googleUser.getBasicProfile();
         console.log(userProfile);
-        this.props.setGoogleUser(googleUser);
+        this.userProfile = googleUser;
         // Make user login in your system
         // login success tracking...
     }
@@ -43,6 +45,7 @@ export class Login extends React.Component<LoginProps> {
                     preLogin={this.preLoginTracking}
                     failureHandler={this.errorHandler}
                 />
+                <GoogleProfile googleUser={this.userProfile} />
         </div>
         )
     }
