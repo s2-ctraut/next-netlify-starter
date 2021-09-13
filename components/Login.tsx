@@ -52,8 +52,10 @@ export class Login extends React.Component<{}, LoginState> {
                     preLogin={this.preLoginTracking}
                     failureHandler={this.errorHandler}
                 />
-                gUser: {this.state.gProfile.getEmail()}
-                <GoogleProfile email={this.state.gProfile?.getEmail()} />
+                gUser: {this.state.gProfile?.getEmail()}
+                {this.state.gProfile && (
+                  <GoogleProfile email={this.state.gProfile?.getEmail()} />
+                )}
         </div>
         )
     }
