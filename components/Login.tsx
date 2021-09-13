@@ -54,7 +54,7 @@ export class Login extends React.Component<{}, LoginState> {
                 />
                 gUser: {this.state.gProfile?.getEmail()}
                 {this.state.gProfile && (
-                  <GoogleProfile email={this.state.gProfile?.getEmail()} />
+                  <GoogleProfile profile={this.state.gProfile} />
                 )}
         </div>
         )
