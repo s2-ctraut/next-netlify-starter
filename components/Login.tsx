@@ -4,7 +4,7 @@ import { GoogleLoginButton } from 'ts-react-google-login-component';
 import { GoogleProfile } from './GoogleProfile';
 
 type LoginState = {
-    email: string
+    gProfile: gapi.auth2.BasicProfile
 }
 
 // export const Login: React.Component<LoginProps> = ({ setGoogleUser }) => {
@@ -12,7 +12,7 @@ export class Login extends React.Component<{}, LoginState> {
 
     constructor(props) {
         super(props);
-        this.state = { email: 'unknown email' };
+        // this.state = { gProfile: 'unknown email' };
        }
 
     preLoginTracking = (): void => {
@@ -33,7 +33,7 @@ export class Login extends React.Component<{}, LoginState> {
         console.log({accessToken: id_token});
         const userProfile = googleUser.getBasicProfile();
         console.log(userProfile.getEmail());
-        this.setState({ email: userProfile.getEmail() });
+        this.setState({ gProfile: userProfile });
         console.log('state set')
         // Make user login in your system
         // login success tracking...
@@ -52,8 +52,8 @@ export class Login extends React.Component<{}, LoginState> {
                     preLogin={this.preLoginTracking}
                     failureHandler={this.errorHandler}
                 />
-                gUser: {this.state.email}
-                <GoogleProfile email={this.state.email} />
+                gUser: {this.state.gProfile.getEmail()}
+                <GoogleProfile email={this.state.gProfile?.getEmail()} />
         </div>
         )
     }
