@@ -28,7 +28,8 @@ export class Login extends React.Component<{}, LoginState> {
         console.error(error);
     }
 
-    responseGoogle(googleUser: gapi.auth2.GoogleUser): void {
+    // responseGoogle(googleUser: gapi.auth2.GoogleUser): void {
+    responseGoogle = (googleUser: gapi.auth2.GoogleUser): void => {
         const id_token = googleUser.getAuthResponse(true).id_token;
         const googleId = googleUser.getId();
 
