@@ -11,7 +11,7 @@ export const GoogleProfile: React.FC<GoogleUserProfileProps> = ({ profile }) => 
   return(
         <div>
           <h3>Google Profile</h3>
-          name: {profile.getName()}
+          name: {profile.getName()}<br/>
           email: {profile.getEmail()}
         </div>
   )
