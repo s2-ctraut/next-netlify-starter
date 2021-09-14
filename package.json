@@ -28,7 +28,9 @@
     "@types/gapi.auth2": "^0.0.55",
     "@types/jsonwebtoken": "^8.5.4",
     "@types/react-dom": "^17.0.9",
+    "@types/request": "^2.48.7",
     "@types/styled-components": "^5.1.11",
+    "@types/urllib": "^2.33.0",
     "apollo-boost": "^0.4.9",
     "apollo-datasource-mongodb": "^0.4.6",
     "apollo-server": "^3.1.2",
@@ -45,14 +47,17 @@
     "mongoose": "^5.13.7",
     "next": "^11.0.0",
     "nodemon": "^2.0.12",
+    "path": "^0.12.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-query": "^3.19.0",
     "remark": "^13.0.0",
     "remark-html": "^13.0.1",
+    "request": "^2.88.2",
     "sharp": "^0.28.3",
     "styled-components": "^5.3.0",
-    "ts-react-google-login-component": "^1.1.9"
+    "ts-react-google-login-component": "^1.1.9",
+    "urllib": "^2.37.4"
   },
   "devDependencies": {
     "@types/node": "^16.3.1",

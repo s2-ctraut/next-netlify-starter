@@ -1,22 +1,27 @@
-// See https://functions.netlify.com/playground/
+import { Handler, HandlerResponse } from "@netlify/functions";
+import urllib from "urllib";
 
-import { Handler } from "@netlify/functions";
+let calls = 0;
 
-let counter = 0;
-
-const handler: Handler = async (event, _context) => {
-  const arg1 = Number(event?.queryStringParameters?.arg1) || 0;
-  const arg2 = Number(event?.queryStringParameters?.arg2) || 0;
-  const sum = arg1 + arg2;
+const handler: Handler = async (event, _context): Promise<HandlerResponse> => {
+  const id_token = event?.queryStringParameters?.id_token || "";
 
   console.log("Greetings from gauthenticated.ts");
-  console.log(`Count = ${counter}`);
-  counter++;
+  calls++;
+  console.log(`calls = ${calls}`);
 
-  return {
-    statusCode: 200,
-    body: JSON.stringify({ sum, counter }),
-  };
+  return new Promise<HandlerResponse>(function (resolve, reject) {
+    urllib
+      .request(`https://oauth2.googleapis.com/tokeninfo?id_token=${id_token}`)
+      .then((result) => {
+        const token = JSON.parse(result.data);
+        console.log(token.name);
+        resolve({ statusCode: result.status, body: JSON.stringify(token) });
+      })
+      .catch((err) => {
+        reject({ statusCode: 401, body: err });
+      });
+  });
 };
 
 export { handler };
