@@ -1,8 +1,10 @@
+// https://www.npmjs.com/package/ts-react-google-login-component
+
 import Layout, { siteTitle } from '../components/layout'
 import Head from 'next/head'
-import { GoogleUserProfile } from '../components/GoogleUserProfile'
+import { LoggedIn } from '../components/LoggedIn'
 
-export default function LoginPage({
+export default function SocialLoginPage({
 }: {
   allPostsData: {
     date: string
@@ -13,10 +15,10 @@ export default function LoginPage({
   return (
     <Layout home>
       <Head>
-        <title>Login {siteTitle}</title>
+        <title>Social Login {siteTitle}</title>
       </Head>
       <div>
-        <GoogleUserProfile/>
+        <LoggedIn/>
       </div>
     </Layout>
   )

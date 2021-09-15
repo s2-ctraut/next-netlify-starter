@@ -34,9 +34,11 @@ export default function Home({
         <Head>
           <title>{siteTitle}</title>
         </Head>
-        <Link href="login"><a>login</a></Link>
+        <Link href="/login"><a>login</a></Link>
         <hr/>
-        <Link href="page2"><a>Page 2</a></Link>
+        <Link href="/social"><a>Social Login</a></Link>
+        <hr/>
+        <Link href="/page2"><a>Test page</a></Link>
         <hr />
         <App />
       </Layout>
