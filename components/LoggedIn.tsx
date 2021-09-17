@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { GoogleProfile } from './GoogleProfile';
 import SocialButton from './SocialButton';
 
 // const REDIRECT_URI = 'https://reactjs-social-login.netlify.app/account/login';
@@ -7,10 +8,12 @@ import SocialButton from './SocialButton';
 const clientConfig = { google: { app_id: '261377444261-5ovk2irequohduu8eddis19l5ofvfl53.apps.googleusercontent.com' }};
 
 const LoggedIn: React.FC = () => {
-  const handleGoogleSocialLogin = (user: any) => {
+  const [gProfile, setGProfile] = useState<gapi.auth2.BasicProfile>();
+  const handleGoogleSocialLogin = (user: gapi.auth2.GoogleUser) => {
     console.log(user);
     console.log('Profile:');
-    console.log(user.profile);
+    console.log(user.getBasicProfile());
+    setGProfile(user.getBasicProfile());
   };
   
   const handleSocialLoginFailure = (err: any) => {
@@ -26,6 +29,7 @@ const LoggedIn: React.FC = () => {
         >
         Login with google
       </SocialButton>
+      <GoogleProfile profile={gProfile}/>
     </div>
     );
   };
