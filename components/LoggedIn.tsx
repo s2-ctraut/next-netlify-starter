@@ -9,11 +9,11 @@ const clientConfig = { google: { app_id: '261377444261-5ovk2irequohduu8eddis19l5
 
 const LoggedIn: React.FC = () => {
   const [gProfile, setGProfile] = useState<gapi.auth2.BasicProfile>();
-  const handleGoogleSocialLogin = (user: gapi.auth2.GoogleUser) => {
+  const handleGoogleSocialLogin = (user: any) => {
     console.log(user);
     console.log('Profile:');
-    console.log(user.getBasicProfile());
-    setGProfile(user.getBasicProfile());
+    console.log(user.profile());
+    setGProfile(user.profile());
   };
   
   const handleSocialLoginFailure = (err: any) => {
@@ -27,12 +27,12 @@ const LoggedIn: React.FC = () => {
           onLoginSuccess={handleGoogleSocialLogin}
           onLoginFailure={handleSocialLoginFailure}
         >
-        Login with google
-      </SocialButton>
-      {
-        gProfile &&
-        <GoogleProfile profile={gProfile}/>
-      }
+          Login with google
+        </SocialButton>
+        {
+          gProfile &&
+          <GoogleProfile profile={gProfile}/>
+        }
     </div>
     );
   };
