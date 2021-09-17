@@ -6,12 +6,12 @@ import SocialButton from './SocialButton';
 
 const clientConfig = { google: { app_id: '261377444261-5ovk2irequohduu8eddis19l5ofvfl53.apps.googleusercontent.com' }};
 
-export const LoggedIn: React.FC = () => {
-  const handleSocialLogin = (user) => {
+const LoggedIn: React.FC = () => {
+  const handleSocialLogin = (user: any) => {
     console.log(user);
   };
   
-  const handleSocialLoginFailure = (err) => {
+  const handleSocialLoginFailure = (err: any) => {
     console.error(err);
   };
   return(
@@ -22,8 +22,10 @@ export const LoggedIn: React.FC = () => {
         onLoginSuccess={handleSocialLogin}
         onLoginFailure={handleSocialLoginFailure}
       >
-        Login with Facebook
+        Login with google
       </SocialButton>
     </div>
     );
   };
+
+  export default LoggedIn;

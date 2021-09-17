@@ -2,16 +2,16 @@
 
 import Layout, { siteTitle } from '../components/layout'
 import Head from 'next/head'
-import { LoggedIn } from '../components/LoggedIn'
+import LoggedIn from '../components/LoggedIn'
 
-export default function SocialLoginPage({
+const SocialLoginPage = ({
 }: {
   allPostsData: {
     date: string
     title: string
     id: string
   }[]
-}) {
+}) => {
   return (
     <Layout home>
       <Head>
@@ -23,3 +23,5 @@ export default function SocialLoginPage({
     </Layout>
   )
 }
+
+export default SocialLoginPage;
