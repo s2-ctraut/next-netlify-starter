@@ -12,8 +12,8 @@ const LoggedIn: React.FC = () => {
   const handleGoogleSocialLogin = (user: any) => {
     console.log(user);
     console.log('Profile:');
-    console.log(user.profile());
-    setGProfile(user.profile());
+    console.log(user.profile);
+    setGProfile(user.profile);
   };
   
   const handleSocialLoginFailure = (err: any) => {
