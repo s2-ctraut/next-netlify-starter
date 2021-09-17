@@ -29,7 +29,10 @@ const LoggedIn: React.FC = () => {
         >
         Login with google
       </SocialButton>
-      <GoogleProfile profile={gProfile}/>
+      {
+        gProfile &&
+        <GoogleProfile profile={gProfile}/>
+      }
     </div>
     );
   };
