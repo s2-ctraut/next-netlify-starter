@@ -7,8 +7,10 @@ import SocialButton from './SocialButton';
 const clientConfig = { google: { app_id: '261377444261-5ovk2irequohduu8eddis19l5ofvfl53.apps.googleusercontent.com' }};
 
 const LoggedIn: React.FC = () => {
-  const handleSocialLogin = (user: any) => {
+  const handleGoogleSocialLogin = (user: any) => {
     console.log(user);
+    console.log('Profile:');
+    console.log(user.profile);
   };
   
   const handleSocialLoginFailure = (err: any) => {
@@ -16,12 +18,12 @@ const LoggedIn: React.FC = () => {
   };
   return(
       <div>
-      <SocialButton
-        provider="google"
-        appId={clientConfig.google.app_id}
-        onLoginSuccess={handleSocialLogin}
-        onLoginFailure={handleSocialLoginFailure}
-      >
+        <SocialButton
+          provider="google"
+          appId={clientConfig.google.app_id}
+          onLoginSuccess={handleGoogleSocialLogin}
+          onLoginFailure={handleSocialLoginFailure}
+        >
         Login with google
       </SocialButton>
     </div>
